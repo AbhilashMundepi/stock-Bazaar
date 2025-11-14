@@ -21,13 +21,23 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.json());
 
-app.use(
-  cors({
-    origin: "http://localhost:5173", // your frontend URL
-    credentials: true,               // allow cookies / credentials
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  })
-);
+const whitelist = [
+  'http://localhost:3002', // Your local dev URL
+  'https://stock-bazaar-frontend.vercel.app/', // Your new frontend URL
+  'https://stock-bazaar-pi.vercel.app/' // Your new dashboard URL
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+};
+
+app.use(cors(corsOptions));
 
 
 
