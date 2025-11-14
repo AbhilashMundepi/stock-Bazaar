@@ -1,0 +1,15 @@
+import React from "react";
+import Hero from "./hero";
+import Team from "./Team";
+
+
+
+export default function AboutPage() {
+
+    return (
+        <>
+        <Hero/>
+        <Team />
+        </>
+    )
+}
