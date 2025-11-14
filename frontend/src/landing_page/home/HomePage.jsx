@@ -1,5 +1,5 @@
 import React from "react";
-import Hero from "./hero";
+import Hero from "./Hero";
 import Awards from "./Award";
 import Stats from "./Stats";
 import Pricing from "./pricing";
