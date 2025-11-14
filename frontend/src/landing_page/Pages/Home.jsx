@@ -15,7 +15,7 @@ const Home =() => {
         navigate("/login");
       }
       const { data } = await axios.post(
-        "http://localhost:3002",
+        "https://stock-bazaar-1.onrender.com",
         {},
         { withCredentials: true }
       );
