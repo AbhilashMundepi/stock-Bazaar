@@ -23,8 +23,8 @@ app.use(express.json());
 
 const whitelist = [
   'http://localhost:3002', // Your local dev URL
-  'https://stock-bazaar-frontend.vercel.app/', // Your new frontend URL
-  'https://stock-bazaar-pi.vercel.app/' // Your new dashboard URL
+  'https://stock-bazaar-frontend.vercel.app', // Your new frontend URL
+  'https://stock-bazaar-pi.vercel.app' // Your new dashboard URL
 ];
 
 const corsOptions = {
