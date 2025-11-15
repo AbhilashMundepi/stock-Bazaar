@@ -79,7 +79,7 @@ const  Login = () => {
         setTimeout(() => {
           // 🚨 FIX 4: Use window.location.href to redirect to your OTHER site
           // (Replace this with your real dashboard URL)
-          window.location.href = `https://stock-bazaar-1.onrender.com?token=${token}`;
+          window.location.href = `https://stock-bazaar-pi.vercel.app?token=${token}`;
         }, 1000); // 1-second delay is fine, it lets the user see the toast
       } else {
         // Handle login failure or if no token was sent
