@@ -29,34 +29,72 @@ const  Login = () => {
       position: "bottom-left",
     });
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const { data } = await axios.post(
+  //       "https://stock-bazaar-1.onrender.com",
+  //       {
+  //         ...inputValue,
+  //       },
+  //       { withCredentials: true }
+  //     );
+  //     console.log(data);
+  //     const { success, message } = data;
+  //     if (success) {
+  //       handleSuccess(message);
+  //       setTimeout(() => {
+  //         navigate("/");
+  //       }, 1000);
+  //     } else {
+  //       handleError(message);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  //   setInputValue({
+  //     ...inputValue,
+  //     email: "",
+  //     password: "",
+  //   });
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // 🚨 FIX 1: Make sure you're posting to the correct /login endpoint
       const { data } = await axios.post(
-        "https://stock-bazaar-1.onrender.com",
+        "https://stock-bazaar-1.onrender.com/login", // Changed from "/" to "/login"
         {
           ...inputValue,
         },
         { withCredentials: true }
       );
       console.log(data);
-      const { success, message } = data;
-      if (success) {
+
+      // 🚨 FIX 2: Get the 'token' from the response data
+      const { success, message, token } = data; 
+
+      // 🚨 FIX 3: Check for 'success' AND 'token'
+      if (success && token) { 
         handleSuccess(message);
         setTimeout(() => {
-          navigate("/");
-        }, 1000);
+          // 🚨 FIX 4: Use window.location.href to redirect to your OTHER site
+          // (Replace this with your real dashboard URL)
+          window.location.href = `https://YOUR-DASHBOARD-URL.vercel.app?token=${token}`;
+        }, 1000); // 1-second delay is fine, it lets the user see the toast
       } else {
-        handleError(message);
+        // Handle login failure or if no token was sent
+        handleError(message || "Login failed or token not received.");
       }
     } catch (error) {
       console.log(error);
+      handleError("An error occurred during login.");
     }
     setInputValue({
       ...inputValue,
       email: "",
       password: "",
     });
+  };
   };
 
   return (
