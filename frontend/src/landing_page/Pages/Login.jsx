@@ -95,7 +95,7 @@ const  Login = () => {
       password: "",
     });
   };
-  };
+  
 
   return (
     <div className="auth-page">
